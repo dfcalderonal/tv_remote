@@ -1,0 +1,21 @@
+<!-- Guardar como index.html en assets/ de la app o abrir en Safari del iPhone apuntando al TV -->
+<!DOCTYPE html>
+<html>
+<head><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TV Remote</title></head>
+<body style="font-family:sans-serif;text-align:center">
+<h2>Control TV 192.168.80.17</h2>
+<button onclick="send('KEYCODE_HOME')">Home</button>
+<button onclick="send('KEYCODE_BACK')">Back</button>
+<button onclick="send('KEYCODE_DPAD_UP')">Up</button>
+<button onclick="send('KEYCODE_DPAD_DOWN')">Down</button>
+<button onclick="send('KEYCODE_DPAD_LEFT')">Left</button>
+<button onclick="send('KEYCODE_DPAD_RIGHT')">Right</button>
+<button onclick="send('KEYCODE_ENTER')">OK</button>
+<script>
+function send(code){
+  fetch('http://192.168.80.17:8080/keyevent?code='+code);
+}
+</script>
+</body></html>
+"
