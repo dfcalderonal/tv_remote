@@ -21,8 +21,10 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Install Gradle
-        run: sudo apt-get update && sudo apt-get install -y gradle
+      - name: Setup Gradle 8.7
+        uses: gradle/gradle-build-action@v3
+        with:
+          gradle-version: 8.7
 
       - name: Build Debug APK directly
         run: gradle assembleDebug
