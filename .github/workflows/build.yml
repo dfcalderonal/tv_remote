@@ -17,9 +17,12 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
+          cache: gradle
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
+      - name: Setup Gradle
+        run: |
+          gradle --version
+          echo "JAVA_HOME=$JAVA_HOME" >> $GITHUB_ENV
 
       - name: Install required SDK packages
         run: |
@@ -27,11 +30,6 @@ jobs:
 
       - name: Write local.properties
         run: echo "sdk.dir=$ANDROID_HOME" > local.properties
-
-      - name: Setup Gradle 7.5
-        uses: gradle/gradle-build-action@v3
-        with:
-          gradle-version: 7.5
 
       - name: Build Debug APK
         run: gradle assembleDebug --stacktrace
